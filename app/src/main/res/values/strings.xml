@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FallDetectionDemo</string>
+<string name="title">3D ACCELERATION(g)</string>
+    <string name="action_settings">Settings</string>
+</resources>

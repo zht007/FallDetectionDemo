@@ -18,10 +18,9 @@ public class MainActivity extends ActionBarActivity{
 
     private SensorManager manager;
     private SensorListener listener;
-    private float[] gravity = new float[3];
-    private float[] linear_acceleration = new float[3];
     private double sVM;
     private Vibrator vibrator;
+    static private float G = (float)9.8;// Gravity
 
 
     @Override
@@ -30,14 +29,12 @@ public class MainActivity extends ActionBarActivity{
         setContentView(R.layout.activity_main);
 
 
-
     manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-    Sensor sensor =manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+    Sensor sensor =manager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 
     //litsen accelerometer by register SensorListener
     listener = new SensorListener();
     manager.registerListener(listener, sensor, manager.SENSOR_DELAY_UI);//通过manager 获取速率
-
     }
 
     /**
@@ -68,36 +65,19 @@ public class MainActivity extends ActionBarActivity{
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-//        float x = event.values[0];
-//        float y = event.values[1];
-//        float z = event.values[2];
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
+        sVM = Math.sqrt(x * x + y * y + z * z);
 
-//            System.out.println("x: "+x);
-//            System.out.println("y: "+y);
-//            System.out.println("z: "+z);
-
-        final float alpha =0.8f;
-
-        // Isolate the force of gravity with the low-pass filter.
-        gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
-        gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
-        gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
-
-        // Remove the gravity contribution with the high-pass filter.
-        linear_acceleration[0] = event.values[0] - gravity[0];
-        linear_acceleration[1] = event.values[1] - gravity[1];
-        linear_acceleration[2] = event.values[2] - gravity[2];
-
-        sVM = Math.sqrt(linear_acceleration[0] * linear_acceleration[0] + linear_acceleration[1] * linear_acceleration[1]+linear_acceleration[2] * linear_acceleration[2]);
-
-        displayAcceleration(linear_acceleration[0], linear_acceleration[1], linear_acceleration[2], sVM);
-
+        displayAcceleration(x/G, y/G, z/G, sVM/G);
 
 // set the SVM threshold
 
-        if (sVM > 10){
+        if (sVM/G > 2){
 
         vibration();
+
         }
     }
 
