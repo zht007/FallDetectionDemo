@@ -22,29 +22,36 @@
         android:gravity="center"
          />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ax ="
-        android:id="@+id/textViewAx"
-        android:layout_weight="0.06"
-        android:layout_marginBottom="16dp"/>
+        android:layout_weight="0.06">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ay ="
-        android:id="@+id/textViewAy"
-        android:layout_weight="0.06"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ax ="
+            android:id="@+id/textViewAx"
+            android:layout_weight="0.06"
+            android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Az ="
-        android:id="@+id/textViewAz"
-        android:layout_weight="0.06"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ay ="
+            android:id="@+id/textViewAy"
+            android:layout_weight="0.06"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Az ="
+            android:id="@+id/textViewAz"
+            android:layout_weight="0.06"
+            android:layout_marginBottom="16dp"/>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
